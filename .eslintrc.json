@@ -1,0 +1,17 @@
+{
+  "extends": "hexo",
+  "root": true,
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "overrides": [{
+    "files": ["test.js"],
+    "extends": "hexo/test",
+    "env": {
+      "es6": true
+    },
+    "globals": {
+      "should": true
+    }
+  }]
+}
