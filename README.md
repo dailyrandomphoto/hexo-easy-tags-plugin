@@ -13,7 +13,8 @@ A Hexo plugin that automatically corrects tag names.
 We can't remember the case of each tag name used previously. Foo? foo? or FOO?
 
 If you use both `Foo` and `foo`, you will have problems.
-Since the file system can't create both `/Foo/` and `/foo/` directories, one of them will not accessible.
+- Issue 1: Since the [case-insensitive file system](https://en.wikipedia.org/wiki/Case_preservation) can't create both `/Foo/` and `/foo/` directories, one of them will not accessible.
+- Issue 2: If set `filename_case: 1` option on the `_config.yml`, both have slugs as `/foo/`, but `Foo` and `foo` are different tags so only one is created under `/foo/`.
 
 ## Solution of This Plugin
 This plugin detects before used name and automatically corrects others.
@@ -39,7 +40,7 @@ tags:
   - foo bar
 ```
 
-All of the above will be change to
+All of the above will be automatically change to
 ```yaml
 tags:
   - Java
@@ -49,6 +50,13 @@ slugs: `/Java/`, `/foo-bar/`
 
 > **NOTE:**<br>
 > Depending on the order of processing posts, the tag name can be `java`, `Java` or `JAVA`.
+
+
+❌ Tags (before)
+> JAVA(1), Java(1), foo-bar(1), foo_bar(1), foo bar(1), java(1)
+
+✅ Tags (after)
+> Java(3), foo-bar(3)
 
 ## Installation
 
@@ -78,6 +86,8 @@ easy_tags_plugin:
 ## TODO
 - Transform tag slugs to lowercase by default. <br>Suggest set `filename_case: 1` in `_config.yml`.
 - Handle `tag_map` configuration.
+- Sort tags by name, not case sensitive.
+- Transform tag slugs using [transliteration](https://github.com/dzcpy/transliteration) module.
 
 
 ## License
