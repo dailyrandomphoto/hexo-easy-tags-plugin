@@ -49,7 +49,8 @@ function init(hexo) {
       const key = makeKey(name);
       let newName = allTags[key];
       if (!newName) {
-        newName = allTags[key] = transform(name);
+        newName = transform(name);
+        allTags[key] = newName;
       }
 
       // Ensure items are unique.

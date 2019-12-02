@@ -1,6 +1,6 @@
 {
   "name": "hexo-easy-tags-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Hexo plugin that automatically corrects tag names.",
   "main": "index.js",
   "scripts": {
@@ -16,8 +16,8 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^6.7.1",
-    "eslint-config-hexo": "^3.0.0",
+    "eslint": "^6.7.2",
+    "eslint-config-hexo": "^4.0.0",
     "mocha": "^6.2.1",
     "nyc": "^14.1.1"
   },
