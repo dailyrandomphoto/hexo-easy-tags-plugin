@@ -81,11 +81,16 @@ easy_tags_plugin:
 
 - `enable` _(default: true)_ - enable this plugin, or disable it.
 - `tag_name_case` _(default: 0)_ - option to transform all tags name to lowercase of uppercase. 0 no transform, 1 lowercase, 2 uppercase.
+- `action` _(default: `correct`)_ - if set to `report`, print conflicted tags and exit.
 
+## Release Notes
+
+### 1.0.2
+- Add `action` option to enable reporting conflicts instead of automatic corrections (#3)
+- Handle `tag_map` configuration.
 
 ## TODO
 - Transform tag slugs to lowercase by default. <br>Suggest set `filename_case: 1` in `_config.yml`.
-- Handle `tag_map` configuration.
 - Sort tags by name, not case sensitive.
 - Transform tag slugs using [transliteration](https://github.com/dzcpy/transliteration) module.
 
