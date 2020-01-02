@@ -18,6 +18,7 @@
     "chai": "^4.2.0",
     "eslint": "^6.8.0",
     "eslint-config-hexo": "^4.1.0",
+    "hexo": "*",
     "mocha": "^6.2.1",
     "nyc": "^15.0.0"
   },

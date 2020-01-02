@@ -81,6 +81,7 @@ easy_tags_plugin:
 
 - `enable` _(default: true)_ - enable this plugin, or disable it.
 - `tag_name_case` _(default: 0)_ - option to transform all tags name to lowercase of uppercase. 0 no transform, 1 lowercase, 2 uppercase.
+- `action` _(default: `correct`)_ - if set to `report`, print conflicted tags and exit.
 
 
 ## TODO
