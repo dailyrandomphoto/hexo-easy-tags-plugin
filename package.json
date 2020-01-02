@@ -1,6 +1,6 @@
 {
   "name": "hexo-easy-tags-plugin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Hexo plugin that automatically corrects tag names.",
   "main": "index.js",
   "scripts": {
