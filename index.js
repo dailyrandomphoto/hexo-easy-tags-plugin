@@ -11,6 +11,7 @@ function init(hexo) {
     enable: true,
     tag_name_case: 0,
     tag_slug_case: 1,
+    sort_ignore_case: true,
     action: 'correct' // correct, report
   }, config[moduleConfigKey]);
 
@@ -26,6 +27,36 @@ function init(hexo) {
   const allTags = {};
   const allConflictTags = {};
   let inited = false;
+  if (moduleConfig.sort_ignore_case) {
+    const Tag = hexo.model('Tag');
+    Tag.schema.virtual('_sort_name').get(function() {
+      const name = this.name;
+      if (!name) return;
+
+      return name.toLowerCase();
+    });
+
+    const listTagsHelper = extend.helper.get('list_tags');
+    const tagCloudHelper = extend.helper.get('tagcloud');
+    const orderbyOverrideHelper = func => function(tags, options) {
+      if (!options && (!tags || !Object.prototype.hasOwnProperty.call(tags, 'length'))) {
+        options = tags;
+        tags = this.site.tags;
+      }
+
+      if (!tags || !tags.length) return '';
+      options = options || {};
+
+      if (!options.orderby || options.orderby === 'name') {
+        options.orderby = '_sort_name';
+      }
+      return func.call(this, tags, options);
+    };
+
+    extend.helper.register('list_tags', orderbyOverrideHelper(listTagsHelper));
+    extend.helper.register('tagcloud', orderbyOverrideHelper(tagCloudHelper));
+    extend.helper.register('tag_cloud', orderbyOverrideHelper(tagCloudHelper));
+  }
 
   if (moduleConfig.action === 'report') {
     extend.filter.register('before_generate', () => {
